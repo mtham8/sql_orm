@@ -20,6 +20,5 @@ class MovieLoader(object):
 
     def load_movies(self):
         for row in self._load_csv():
-            query = insert_row(table=self.table)
             params = (row[0], row[1], row[2])
-            query_sql(cursor=self.cursor, query=query, params=params)
+            insert_row(table=self.table, cursor=self.cursor, params=params)

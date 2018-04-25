@@ -52,8 +52,10 @@ def query_sql(cursor, query, params):
         time=time.time() - start, query=query))
 
 
-def insert_row(table):
-    return sql.SQL('INSERT INTO {} VALUES (%s, %s, %s);').format(sql.Identifier(table))
+def insert_row(table, cursor, params):
+    query = sql.SQL('INSERT INTO {} VALUES (%s, %s, %s);').format(
+        sql.Identifier(table))
+    query_sql(cursor=cursor, params=params, query=query)
 
 
 if __name__ == '__main__':
